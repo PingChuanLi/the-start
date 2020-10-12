@@ -1,0 +1,70 @@
+#include <iostream>
+#define NUM 300
+
+using namespace std;
+
+void downAdjust(int i, int n);
+void creatHeap();
+
+int heap[NUM];
+int n;
+
+int main()
+{
+
+
+
+    return 0;
+}
+
+void creatHeap()
+{
+    for(int i = n/2; i >= 1; i--)
+    {
+        downAdjust(i, n);
+    }
+}
+void deleteHeap(int i)
+{
+    heap[i] = heap[n--];
+    downAdjust(i,n);
+}
+void upAdjust(int i)
+{
+    if(i < 1)
+        return;
+    int high = i;
+    int j = i/2;
+
+    if(heap[high] > heap[j])
+    {
+        int t = heap[j];
+        heap[j] = heap[high];
+        heap[high] = t;
+
+        upAdjust(j);
+    }
+    else return;
+
+}
+void downAdjust(int i, int n)
+{
+    if(i > n) return;
+    int low = i, j = i *2;
+
+    if(j > n) return;
+
+    if(heap[j] < heap[j+1]) j+=1;
+
+    if(heap[low]< heap[j])
+    {
+
+        int t = heap[low];
+        heap[low] = heap[j];
+        heap[j] = t;
+
+        downAdjust(j, n);
+    }
+    else return;
+
+}
